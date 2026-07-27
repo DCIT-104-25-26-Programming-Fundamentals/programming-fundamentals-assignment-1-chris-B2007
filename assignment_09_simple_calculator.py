@@ -68,3 +68,51 @@
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
 
+def show_menu():
+    print("\n============================")
+    print("     SIMPLE CALCULATOR")
+    print("============================")
+    print("1. Addition")
+    print("2. Subtraction")
+    print("3. Multiplication")
+    print("4. Division")
+    print("5. Modulus")
+    print("6. Exponentiation")
+    print("7. Quit")
+
+
+def main():
+    operations = {
+        "1": ("+", add),
+        "2": ("-", subtract),
+        "3": ("*", multiply),
+        "4": ("/", divide),
+        "5": ("%", modulus),
+        "6": ("**", exponent),
+    }
+
+    while True:
+        show_menu()
+        choice = input("Select an operation (1-7): ")
+
+        if choice == "7":
+            print("Goodbye!")
+            break
+
+        if choice not in operations:
+            print("Error: Please enter a number between 1 and 7.")
+            continue
+
+        symbol, operation = operations[choice]
+        a = float(input("Enter first number : "))
+        b = float(input("Enter second number: "))
+
+        if choice in ("4", "5") and b == 0:
+            print("Error: Cannot divide by zero.")
+            continue
+
+        result = operation(a, b)
+        print(f"Result: {a} {symbol} {b} = {result}")
+
+
+main()
